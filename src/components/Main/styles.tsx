@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 
 export const Main = styled(Container)`
   position: relative;
-  margin: 5vh auto;
+  margin: 0 auto;
   max-width: 90%;
   flex-grow: 1;
 
