@@ -5,6 +5,7 @@ export const ClearConfirmation = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
+  width: 80%;
 `;
 
 export const ButtonContainer = styled.footer`

@@ -18,7 +18,7 @@ export const Container = styled.section`
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 10px;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   margin: 0 auto;
   display: flex;
@@ -56,7 +56,7 @@ export const Title = styled.h3`
 `;
 
 export const StyledForm = styled(Form)`
-  width: 100%;
+  width: 80%;
   label {
     font-size: 1rem;
     color: #000000;
