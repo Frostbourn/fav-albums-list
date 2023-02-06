@@ -22,7 +22,7 @@ export default function List() {
       {albumLength > 0 && (
         <ItemsList view={view}>
           {albumsList.map((elem: FavItem) => (
-            <Item data={elem} key={elem?.id} />
+            <Item key={elem?.id} data={elem} view={view} />
           ))}
         </ItemsList>
       )}

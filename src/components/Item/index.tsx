@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ListGroup } from "react-bootstrap";
+import { Badge } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { MdDelete, MdStars } from "react-icons/md";
 import Modal from "../Modal";
@@ -10,9 +10,10 @@ import { ButtonsContainer, Icon, List, ListItem, Title } from "./styles";
 
 interface ItemProps {
   data: FavItem;
+  view: string;
 }
 
-export default function Item({ data }: ItemProps) {
+export default function Item({ data, view }: ItemProps) {
   const [isOpen, setModalOpen] = useState(false);
   const [isHighlighted, setIsHighlighted] = useState(data?.isTheBest);
   const dispatch = useDispatch();
@@ -41,9 +42,10 @@ export default function Item({ data }: ItemProps) {
   return (
     <>
       <List>
-        <ListItem>
-          <Title className='fs-3 fw-bold'>{data?.title}</Title>
-
+        <ListItem view={view}>
+          <Title className='fs-3 fw-bold' view={view}>
+            {data?.title}
+          </Title>
           <ButtonsContainer>
             <Icon
               title='Add to the best of the best'

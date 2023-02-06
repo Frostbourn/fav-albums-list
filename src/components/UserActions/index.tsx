@@ -1,10 +1,10 @@
 import { useState } from "react";
+import { MdGridView, MdViewList } from "react-icons/md";
 import Button from "../Button";
 import Modal from "../Modal";
 import { DEFAULT_FILTER } from "../../constans";
 import { Select, Wrapper } from "./styles";
 import { Icon } from "../Item/styles";
-import { MdGridView, MdViewList } from "react-icons/md";
 import { useFilter } from "../../hooks/useFilter";
 
 export const UserActions = ({

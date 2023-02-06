@@ -22,7 +22,7 @@ export const useFilter = () => {
     (filter: string) => {
       favArray.sort(
         (a: any, b: any) =>
-          b.isTheBest - a.isTheBest || a[filter].localeCompare(b[filter])
+          b["isTheBest"] - a["isTheBest"] || a[filter].localeCompare(b[filter])
       );
       setAlbumsList(favArray);
     },
