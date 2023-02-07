@@ -11,7 +11,7 @@ export const List = styled.div`
 
 export const ListItem = styled.div<{ view: string }>`
   display: flex;
-  flex-direction: ${(props) => (props.view === "grid" ? "column" : "row")};
+  flex-direction: ${({ view }) => (view === "grid" ? "column" : "row")};
   justify-content: space-between;
   align-items: center;
   background: #ffffff;
@@ -52,5 +52,6 @@ export const Title = styled(ListGroup.Item)`
   overflow: hidden;
   width: 75%;
   white-space: nowrap;
-  ${({ view }) => view === "grid" && `text-align: center;`};
+  ${({ view }) =>
+    view === "grid" && `text-align: center; margin-bottom: 1rem;`};
 `;

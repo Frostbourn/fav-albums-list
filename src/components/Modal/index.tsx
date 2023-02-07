@@ -1,12 +1,9 @@
-import { useCallback } from "react";
 import Button from "../Button";
 import { MdOutlineClose } from "react-icons/md";
-import { useDispatch } from "react-redux";
-import { v4 as uuid } from "uuid";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { addItem, clearList, deleteItem } from "../../slices/favListSlices";
+import { ModalConfirmation } from "../ModalConfirmation";
+import { useModalHandlers } from "../../hooks/useModal";
 import { ModalProps } from "./types";
 import {
   ButtonContainer,
@@ -17,7 +14,6 @@ import {
   Wrapper,
 } from "./styles";
 import { schema } from "../../schema";
-import { ModalConfirmation } from "../ModalConfirmation";
 
 export default function Modal({
   type,
@@ -25,48 +21,20 @@ export default function Modal({
   setModalOpen,
   item,
 }: ModalProps): JSX.Element {
-  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmitHandler = useCallback(
-    (data: any) => {
-      const { title } = data;
-      if (title) {
-        if (type === "add") {
-          dispatch(
-            addItem({
-              id: uuid(),
-              title,
-              isTheBest: false,
-              time: new Date().toLocaleString(),
-            })
-          );
-          setModalOpen(false);
-          toast.success(`Album ${title} added successfully.`);
-        }
-      }
-
-      reset();
-    },
-    [item, type, dispatch, setModalOpen, reset]
-  );
-
-  const clearListHandler = useCallback(() => {
-    dispatch(clearList());
-    setModalOpen(false);
-  }, []);
-
-  const deleteItemHandler = useCallback(() => {
-    dispatch(deleteItem(item?.id));
-    toast.success(`Album ${item?.title} delated successfully.`);
-  }, [item]);
+  const { addItemHandler, clearListHandler, deleteItemHandler } =
+    useModalHandlers({
+      type,
+      item,
+      setModalOpen,
+    });
 
   return (
     <>
@@ -95,7 +63,7 @@ export default function Modal({
               />
             )}
             {type === "add" && (
-              <StyledForm onSubmit={handleSubmit(onSubmitHandler)}>
+              <StyledForm onSubmit={handleSubmit(addItemHandler)}>
                 <Title>Add album</Title>
                 <StyledForm.Group className='mb-3'>
                   <StyledForm.Control
@@ -104,6 +72,7 @@ export default function Modal({
                     {...register("title")}
                     placeholder='Title'
                     maxLength={50}
+                    autoFocus
                   />
                   {errors && (
                     <StyledForm.Text className='text-danger'>
