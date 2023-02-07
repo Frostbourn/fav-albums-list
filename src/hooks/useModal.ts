@@ -12,15 +12,15 @@ export const useModalHandlers = ({
   type,
   item,
   setModalOpen,
+  reset,
 }: {
   type: string;
   item: FavItem | undefined;
   setModalOpen: (value: boolean) => void;
+  reset: () => void;
 }) => {
   const dispatch = useDispatch();
-  const { reset } = useForm({
-    resolver: yupResolver(schema),
-  });
+
   const addItemHandler = useCallback(
     (data: any) => {
       const { title } = data;

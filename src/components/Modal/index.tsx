@@ -25,6 +25,7 @@ export default function Modal({
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -34,6 +35,7 @@ export default function Modal({
       type,
       item,
       setModalOpen,
+      reset,
     });
 
   return (
